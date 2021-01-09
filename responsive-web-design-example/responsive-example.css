@@ -1,0 +1,68 @@
+aside,
+section {
+	margin-right: /* 15px */ 1.096%;
+}
+
+.container {
+	width: /* 1368px */ 95vw;
+	height: /* 400px */ 50.13vh;
+	padding: /* 15px */ 1.096%;
+}
+
+aside {
+	width: /* 456px */33.3%;
+	height: /* 400px */ 100%;
+	float: left;
+    background-color: greenyellow
+}
+
+section {
+	width: /* 456px */33.3%;
+	height: /* 400px */ 100%;
+	float: left;
+    background-color: lightpink
+}
+
+/* A varázsformula
+Ahhoz, hogy egy elem relatív értékét meghatározd, a következő lépések szükségesek:
+
+Határozd meg az elem statikus méretét (célérték – target).
+Határozd meg, hogy melyik elem lesz a viszonyítási alap (kontextus – context), és találd meg a méretének statikus értékét.
+Alkalmazd a formulát.
+Az aktuális helyzetnek megfelelően döntsd el, hogy éppen melyik relatív egységre van szükséged.
+Kezdjük a példánk egyszerűbb részével. Alakítsuk át az aside és a section elemeket. Mindkettő viszonyítási alapja (context) a .container. Az értékeket behelyettesítve:
+
+A szélességek átalakítása:
+
+target ÷ context = result
+456px ÷ 1368px = 0.3333
+
+A magasságok átalakítása:
+
+target ÷ context = result
+400px ÷ 400px = 1
+Text
+Ahogy az előző leckében láthattad, a százalék kitűnő abban az esetben, ha a méretet egy másik elem méretéhez viszonyítva szeretnéd megadni. Mivel szeretnénk, ha az aside és a section a .container méreteihez arányosan méreteződne, válasszuk a százalék értéket. Így a kapott 0.3333 érték 33.33% lesz, és a kapott 1 pedig 100%.
+
+------------------------------------------------
+
+A weblapon azonban semmi nem változott, még mindig statikus, hiszen a méretek alapját adó konténer még mindig abszolút egységekkel van méretezve. Állítsuk át ezt is.
+
+A konténer átalakítása
+Itt már egy trükkösebb kérdéssel találkozunk: mi lehet a konténer kontextusa? A szélesség és magasság tekintetében ez most a szülő elem, a body, amely kitölti a teljes viewportot. De mi a viewport statikus mérete? Az én számítógépemen, egy teljes képernyőt kitöltő böngészőablak szélessége 1440px. A te számítógépeden valószínűleg ez az érték teljesen más. Akkor most hogyan tovább?
+
+Az a trükk, hogy ezt a kérdést nem kell megválaszolnod. Ha egy designerrel dolgozol együtt, ő majd megadja pontosan, milyen felbontású képernyőn dolgozott. Ha egyedül dolgozol, ezt magad is kiderítheted. Például én ezt a kis bemutató oldalt egy 1440px széles és 798px magas képernyőre terveztem. Ezeket a méreteket fogom használni a viewport statikus méreteinek.
+
+Ennek tudatában már nagyon egyszerű átváltani a számokat: 1368/1440 = 0.95 a szélességre és 400/798 = 0.5013 a magasságra. Mivel a .container elemet a viewporthoz viszonyítva szeretnénk méretezni, használjuk a vw és vh egységeket, hogy megkapjuk a reszponzív méreteket:
+
+----------------------------------
+
+Végső simítások
+Mind az aside, mind a section jobb oldali margója 15px. A kontextus, amelyhez képest méretezni szeretnénk ezeket, a konténer. Így a formula a következőképpen alakul: 15/1368 = 0.01096. Ez újra a százalék terepe:
+
+--------------------------------------
+
+De mi a helyzet a térközzel a .container elemen? Ebben az esetben a cél (target) maga a térköz (a terület a tartalom és a border [keret] között). Mivel ez még az elemen belül található, ezért a kontextus maga az elem.
+
+
+} */

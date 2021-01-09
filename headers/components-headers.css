@@ -1,0 +1,61 @@
+/* CSS reset belinkelve a html head elemébe */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Amikor headert építesz, a szokásos rend az, hogy először magát a <header> taget formázod meg, és csak utána haladsz tovább a tartalmával. */
+
+/* Ezek a szabályok a legtöbb elrendezéssel kapcsolatos kérdést megoldják. Középre rendezik a tartalmat horizontálisan (text-align: center;) és vertikálisan (egyenlő alsó és felső padding). Egy hajszálvékony bordert is adnak a headernek, amely segít a header oldaltól való elkülönítésében. */
+
+header {
+  text-align: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+/* A pozicionálás ezennel készen is van, haladhatunk tovább a <header> elem belsejével. */
+
+/* <img>
+Mielőtt továbbmegyünk, méretezzük át azt a komikusan nagy logót: */
+
+header img {
+  width: 4rem;
+}
+
+/* Sokkal jobb. A példában a képnek kerek bordere volt. Adjuk hozzá ezt a szabályok kiegészítésével: */
+
+header img {
+  width: 4rem;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 100%;
+  padding: .25rem;
+}
+
+/* Nem rossz, de a példában azért nagyobb a hely a logó és a border között. Egy kis padding megoldja ezt:
+
+header img {
+  width: 4rem;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 100%;
+  
+} */
+
+/* <h1> és <h2>
+Az utolsó feladat a címsorok tipografikus megjelenéséről gondoskodnunk. Érvényesítsd az alábbi szabályokat a h1 és h2 címsorra: */
+
+header h1 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.25rem;
+  color: #555;
+  margin: .67rem 0;
+}
+
+header h2 {
+  font-family: 'Raleway', sans-serif;
+  font-size: .875rem;
+  text-transform: uppercase;
+  color: #777;
+  letter-spacing: .1rem;
+}

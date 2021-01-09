@@ -1,0 +1,114 @@
+/* CSS reset belinkelve a html head elemébe */
+
+/* ==== GENERAL STYLES ==== */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Először a nav tag: */
+
+nav {
+  background-color: rgba(0,0,0,.9);
+  padding: 1rem;
+}
+
+/* Tovább az anchorokra. Itt a fontos dolog a display: block; szabály és az aszimmetrikus padding. Az előző megnöveli a kattintható területet, és lehetővé teszi, hogy az a tagek box-modell értékeket fogadjanak. Az utóbbi pedig a "Sign up" gomb hosszúkás megjelenéséért felel.
+
+Egy külső betűtípust használtam, linkeljük ezt a head részre. */
+
+nav a {
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  text-align: center;
+  color: #fff;
+  display: block;
+  padding: .5rem 1rem;
+}
+
+/* Az alapok mindjárt készen. Még hiányzik egy border a "Sign Up" gombon. Megcélzom egy class segítségével*/
+
+.sign-up {
+  border: 1px solid hsla(0,0%,100%,.2);
+  border-radius: 9999px;
+}
+
+/* Remek! Jöhetnek a speciális állapotok.
+
+Hover állapot
+Azt szeretném, ha a linkek alig észrevehetően szürkévé válnának, amikor egérrel rájuk mutat valaki, ezért hozzáadom az alábbiakat az alapstílusokat követő részre*/
+
+nav a:hover {
+  color: hsl(0, 0%, 77%);
+  transition: color .15s ease-in-out;
+}
+
+/* Azt is szeretném, ha a "Sign Up" gomb hover állapotban inverz színekre váltana */
+
+.sign-up:hover {
+  color: #000;
+  background-color: #fff;
+  transition: background-color .15s ease-in-out;
+}
+
+/* Nagyobb képernyőkön szeretném, ha a nav megnőne, horizontálisra váltana, és az oldal tetejéhez rögzítve (fixed top) maradna. Először a rögzítést oldjuk meg: */
+
+@media (min-width: 768px) {
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+}
+
+/* Már csak floatolni kell az elemeket, hogy horizontálisan rendeződjenek el, jó sorrendben. A példában a "Home" link a bal oldalon van, míg a többi a jobb oldalon. Ezt úgy tudom elérni, hogy először minden anchor elemet jobbra floatolok, utána a "Home"-ot balra: */
+
+@media (min-width: 768px) {
+
+  nav a {
+    float: right;
+  }
+
+  .home {
+    float: left;
+  }
+
+}
+
+/* És végül, ahol float van, ott clearfixnek is kell lennie: */
+
+@media (min-width: 768px) {
+
+  /* Clearfix */
+    nav::after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+}
+
+/* Bemutató paragrafusok
+Ha szeretnéd kipróbálni a navot akcióban, adj hozzá egy pár paragrafusnyi szöveget, és egészítsd ki a CSS-t. Pro tipp: A body-ra hívott margin-top akadályozza meg, hogy a tartalom a navbar alá csússzon.*/
+
+p {
+  font-size: 1rem;
+  font-family: 'Space Mono', monospace;
+}
+
+@media (min-width: 768px) {
+
+  body {
+    width: 60%;
+    margin: 5.25rem auto 1.25rem;
+  }
+
+}
+
+p {
+  margin-bottom: 1.25rem;
+  padding: .5rem;
+}

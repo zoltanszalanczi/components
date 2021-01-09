@@ -1,0 +1,24 @@
+/* CSS reset belinkelve a html head elemébe */
+
+/* A Bootstrap-megoldás
+A teljesség kedvéért mutatok egy harmadik megoldást, amely az első módszer (az abszolút pozicionálás) egy picit módosított változata. A Bootstrap-keretrendszer egyébként a példái között például pont ezt használja a sticky footer probléma megoldására. */
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: 50px;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+}
+
+/* Ennek a módszernek az az előnye, hogy nem kell használnod egy wrapper divet, mert a html elemet használja pozicionált konténerként. Ezt leszámítva tökéletesen azonos az első megoldással, és ez is csak fix magasságú footer esetén működik.
+
+Megjegyzés: Ha szeretnéd megoldani a "ragadósság" problémáját és reszponzív footert használni egyszerre, a flexboxra lesz szükséged. A flexbox egy olyan menő dolog, hogy saját projektet érdemel a CodeBerry tananyagban. :) */

@@ -1,0 +1,40 @@
+/* Flexibilis médiabeágyazás
+Sajnos a videók (vagy bármilyen más média, amely iframe elemben érkezik) reszponzív beágyazása nem oldható meg egyszerűen max-width: 100%; szabállyal. De szerencsénkre van egy kis kerülőutas megoldás.
+
+A megoldás elve, hogy az iframe elemet egy olyan konténerrel vesszük körbe, amelynek a méretaránya azonos a beágyazott média méretarányával. Így a konténer rákényszeríti a tartalmát, hogy újraszámolja a szélességét és magasságát. Ezáltal ha a konténer maga reszponzív, a tartalma is ennek megfelelően fog viselkedni.
+
+Megjegyzés: Ebben a megoldásban egy elég bonyolult CSS-varázslatot találsz. Nem kell minden részletét teljesen értened ahhoz, hogy alkalmazni tudd (és az alapos elmagyarázása jelentősen túlmutat a jelen projekten). Ha mégis részleteiben érdekel, az eredeti cikket itt tudod elolvasni Thierry Koblentz trükkjéről (angolul).
+
+Lássuk mindezt a gyakorlatban. Nyiss egy új bint JSBinen, és másold bele a következő kódot:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4Lsa7N7LHJk?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+HTML
+Láthatod, hogy teljesen statikus. Változtassunk ezen. Csomagold az iframe elemet egy figure elembe:
+
+<figure>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/4Lsa7N7LHJk?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
+</figure>
+HTML
+Ez lesz az a mágikus elem, amely az iframe helyett az átméretezésért felelős. Nézzük a hozzá tartozó CSS-t: */
+
+figure {
+	height: 0;
+	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	position: relative;
+}
+
+figure iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+/* Az első lényeges rész a padding-bottom tulajdonság. Ez teremti meg azt a teret, amelybe a beágyazott média nyúlhat. A figure konténer magassága így mindig a szélességének 56.25%-a lesz. Ez pontosan a 16:9-es méretaránynak felel meg, így a beágyazott tartalom teljes egésze látszani fog.
+A position: relative; biztosítja, hogy az iframe-et a figure elemhez képest tudjuk pozicionálni.
+A height: 0; részre csak az Internet Explorer 5 és 6 miatt van szükség.
+A kód fennmaradó része pedig egészen magáért beszél. Az iframe abszolút módon pozicionált, szélessége és magassága is 100%, így mindig kitölti a rendelkezésére álló konténert, ez biztosítja a reszponzivitást.
+És ennyi. Most már tudsz reszponzívan médiát beágyazni. Legyen benne sok örömöd. :)
+
++1 tipp: Hogyan jött ki a padding-bottom értéke? Egyszerűen elosztottuk a 9-et 16-tal, és megszoroztuk az eredményt százzal. */

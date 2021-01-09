@@ -1,0 +1,72 @@
+/* Képzeld el, hogy ez egy weboldal része, és a tulajdonos ezt a három csomagot szeretné megjeleníteni egymás mellett. (Ez egy elég gyakori felhasználása a floatnak.)
+
+Floatold a csomagokat balra, és csinosítsd ki őket egy picit: */
+
+.package {
+  float: left;
+  background-color: #eee;
+  text-align: center;
+}
+
+/* Szeretnénk, ha egyenlően helyezkednének el, és rendelkeznének némi marginnal, illetve paddinggel. Ha 1%-ot számolunk az utóbbiakra, és a maradékot elosztjuk hárommal, akkor 29.33% a csomagok szélessége: */
+
+.package {
+  float: left;
+  width: 29.33%;
+  margin: 1%;
+  padding: 1%;
+  background-color: #eee;
+  text-align: center;
+}
+
+/* Adj az oldalhoz egy újabb <div>-et némi tartalommal a <div class="packages"> ... </div> záró tagje után. A tartalom a három csomagunk alatt jelent meg, ahogy az várható volt.
+
+Adj paddinget a .content-nek, és állíts be egy háttérszínt:*/
+
+.content {
+  padding: 10px;
+  background-color: #888;
+  clear: both;
+  margin-top: 75px;
+}
+
+/* Valahol elfelejtettünk volna lezárni egy div-et? Nem, minden rendben van a kódban. A háttér mégis megjelent a csomagok alatt is.
+
+Emlékszel, hogy azt mondtuk, a float kiveszi az elemeket a normál megjelenítési sorrendből? Amikor a három .package div-et balra floatoltad, azok kikerültek a sorrendből, és a helyükön ott maradt egy üres .packages div.
+
+A böngésző elég okos ahhoz, hogy a tartalmat a floatolt elemek után kezdje el, de a .content így is ott kezdődik, ahol a .packages véget ért. A három csomag tetején.
+
+A clear tulajdonsággal vissza tudod állítani a normál sorrendet a floatok után. Három formája van: clear: left, clear: right és clear: both. Mindegyik a nevének megfelelő irányba történt floatokra hat (a both értelemszerűen mindkettőre). 
+
+Clearfixek
+A háttér már jól néz ki így, hogy használtuk a clear tulajdonságot a floatokon. Viszont amikor megpróbálunk top margint adni a .content elemnek, valami megint szétesik:
+
+A margin most benyúlik a floatolt elemek alá, a .content div pedig a helyén maradt.
+
+Ennek nagyrészt az az oka, hogy a float eredetileg nem layoutokhoz lett kitalálva, hiába használjuk erre gyakran mostanában. Ez nem kizáró ok, de ha floatokkal szeretnél rendezkedni az oldaladon, készülj fel arra, hogy némi ügyeskedésre szükséged lesz.
+
+Az egyik lehetőség a floatok rendezésére
+Szúrj be egy üres div-et a .packages és .content div-ek közé:
+
+<div style="clear: both;"></div>
+HTML
+Voilá, a top margin már meg is jelent.
+
+Ez egy gyakran használt, de sokat kritizált megoldás a problémára. A kritika alapja az, hogy a HTML elvileg csak az oldal tartalmával kapcsolatos információt tartalmazhatja, a megjelenéssel kapcsolatos kódnak a CSS-be kellene kerülnie.
+
+Az ajánlott módszer a floatok rendezésére
+Töröld ki az előbb hozzáadott üres div-et. Helyette másold be az alábbiakat a CSS-edbe:*/
+
+.packages::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+/* Ez a módszer ugyanúgy megoldja a floatokat, és nem igényel egy üres HTML-elemet. A kód beilleszt egy üres pszeudoelemet (content: "";) a valóban létező div-ed után (::after). Ez a pszeudoelem block elemként jelenik meg (display: block;), és rendezi a floatokat a clear: both; segítségével.
+
+Pszeudoelemet bármely elem után létrehozhatsz, csak a szelektorhoz kell hozzáadnod az ::after részt. A pszeudoelemeket főként kozmetikai céllal használjuk, ha szeretnénk valamit hozzáadni az adott elem megjelenéséhez. A dupla kettőspont a ::pszeudoelemek és :pszeudoclassok elkülönítését szolgálja.
+
+A fentebbi metódust egyébként clearfix technikának hívják.
+
+ */

@@ -1,0 +1,73 @@
+body {
+  background-color: #333;
+}
+
+.container {
+  width: 300px;
+  height: calc(100vh - 40px);
+  margin: 20px auto;
+  background-color: #fff;
+}
+
+#box-01 {
+  background-color: hsla(60, 100%, 60%, .85);
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+  top: 100px;
+  left: 0;
+  width: 70%;
+  height: 500px;
+}
+
+#box-03 {
+  background-color: hsla(332, 69%, 51%, .85);
+  top: 100px;
+  right: 0;
+  width: 30%;
+  height: 450px;
+}
+
+#box-04 {
+  background-color: hsla(279, 60%, 44%, .85);
+  bottom: 0;
+  width: 100%;
+}
+
+
+/* Állítsd a dobozok pozícióját absolute-ra:
+
+.box {
+  position: absolute;
+}
+Emlékezz, ahhoz, hogy a dobozok abszolút módon pozicionálhatóak legyenek, pozicionálnunk kell a konténert (.container):
+
+.container {
+  position: relative;
+} */
+
+.box {
+  position: absolute;
+}
+
+.container {
+  position: relative;
+}
+
+/*  A footer
+Szeretnénk, ha a footer elfoglalná a fehér konténer alját teljes szélességében. Ez ilyen egyszerű: box4-hez hozzáadtam bottom 0-t és width 100%-ot.
+
+A header
+Egy másik technika a teljes szélesség lefedésére, ha a következő értékeket adod a left és right tulajdonságoknak left: 0, right: 0
+
+A main és aside elemek
+Mindkettőnek ott kell kezdődnie, ahol a header véget ér: top:100px.
+A main balra tolt, és a konténer 70%-át foglalja el, míg az aside jobbra tolt, és a maradék 30%-ot fedi:
+*/
+
+
+

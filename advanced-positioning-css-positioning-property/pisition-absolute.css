@@ -1,0 +1,65 @@
+/* A html-ben áthivatkoztam ezt a css-t 
+
+Tegyük föl, hogy ez egyszerű weboldal layout, ahol a fehér négyszög tartalmazza a fő szekciókat. Mi lenne, ha szeretnénk a második dobozt felrakni a konténer jobb felső sarkába. Hogy tehetnénk ezt meg. Próbálkozhatnánk fix pozicionálással, de az azonnal eltörné a layoutot, amint a böngészőablak mérete megváltozik. Arra lenne szükségünk, hogy az elemet a szülőjéhez képest tudjuk mozgatni.
+
+Az abszolút (absolute) pozicionálás pontosan erre jó, de van benne egy trükk. Adj a második doboznak position: absolute; értéket.
+
+Most jön a trükk. Adj a konténernek position: relative; értéket*/
+
+body {
+  background-color: #333;
+}
+
+.container {
+  width: 300px;
+  height: calc(100vh - 40px);
+  margin: 20px auto;
+  background-color: #fff;
+  position: relative;
+}
+
+.box{
+  width: 100px;
+  height: 100px;
+}
+
+#box-01 {
+  background-color: hsla(60, 100%, 60%, .85);
+}
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+  position:absolute;
+  top: 0;
+  right: 0;
+}
+
+#box-03 {
+  background-color: hsla(332, 69%, 51%, .85);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+#box-04 {
+  background-color: hsla(279, 60%, 44%, .85);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* A position: absolute; a legközelebbi pozicionált felmenőhöz képest pozicionálja abszolútan az adott elemet.
+
+Ez annyira fontos, hogy megismétlem:
+
+A position: absolute; a legközelebbi pozicionált felmenőhöz képest pozicionálja abszolútan az adott elemet.
+
+Emlékezz, hogy minden elem alapértelmezetten position: static, amely az egyetlen nem pozicionált állapot. Minden más – a relative, fixed és absolute állapotok – pozicionáltnak számítanak.
+
+Ez az oka a dobozunk fenti viselkedésének. Amíg nem állítottuk át a .container-t position: relative értékre (ezzel pozicionálva), addig a doboz legközelebbi pozicionált felmenője a böngészőablak volt. Ez magyarázza azt is, hogy a pozicionált felmenővel nem rendelkező elemek miért viselkednek ugyanúgy absolute és fixed pozíció esetén.
+
+Azt is figyeld meg, hogy a position: absolute is eltávolítja az elemet a normál sorrendből (ezért tűnt el a whitespace az eredeti helyéről).
+
+Ha érted a működését, az abszolút pozicionálás a legerőteljesebb tud lenni valamennyi eszköz közül. Ezzel leszel képes olyan layoutokat építeni, ahol minden pontosan ott van, ahol szeretnéd.
+
+Próbáld meg a négy dobozt a konténer négy sarkába helyezni. */

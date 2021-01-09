@@ -1,0 +1,129 @@
+/* CSS reset belinkelve a html head elemébe */
+
+/* A komplexitás ezen szintjénél már általában jó ötlet, ha az egyes elemeket classokkal jelölöd meg. Ez hosszú távon egyszerűbbé teszi az életed, és a használandó szelektorokat is. */
+
+/* CSS 1.
+Ahhoz, hogy ez a váz a példában bemutatott mutatós cikké alakuljon, a következő négy lépésnek kell megtörténnie:
+
+A headert meg kell nyújtani, hogy kitöltse a viewportot, és adni kell neki egy háttérképet.
+A tartalmát a közepére kell pozicionálni.
+Hozzá kell adni a tipografikus stílusokat.
+Hozzá kell adni az oldal további részét. */
+
+/* A borító
+Azt szeretném, ha a header maga borítóként (cover) viselkedne. Ezért is adtam neki a .cover classt. Célozzuk meg ezt a classt, és módosítsuk a megjelenését:
+
++1 tipp: Javaslom, hogy az alább sorokat egyesével add hozzá a CSS-edhez, hogy lásd, milyen hatást érnek el. */
+
+.cover {
+  background: url('https://orange.codeberryschool.com/content/images/project-assets/page-header-bg.jpg') no-repeat center;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  color: hsla(0,0%,100%,.7);
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+  display: table;
+}
+
+/* A tartalom középre igazítása
+A horizontális középre rendezés nem nagy mutatvány, csak csapj egy text-align: center; szabályt a .cover-hez: */
+
+/* A vertikális pozicionálás egy picit nehezebb. Most a display tulajdonság table és table-cell értékeit hívjuk segítségül. Ezek segítségével megmondhatjuk a .cover-nek, hogy viselkedjen úgy, mint egy táblázat. Ezután a .wrapper-t pedig kikiáltjuk ezen táblázat egy cellájának, amit már középre rendezhetünk vertikálisan. Ez egy kis trükközés a CSS-sel, de nem túl bonyolult, és legtöbbször a kívánt eredménnyel jár.
+
+Megjegyzés: A .wrapper div szerepe pontosan ennyi a vázban. Minden elemet magába csomagol, amelyek így egyszerűen válhatnak egy táblázat cellájának tartalmává. Fent a display: table-lel tettem táblázattá az egészet.
+
++1 tipp: Ezt a megoldást lassanként felváltja a még igencsak friss flexbox technika, amely rengeteg pozicionálási fejfájásra ad választ a CSS-ben. */
+
+/* Hoppá, valami történt (legalábbis valami nem stimmel, ha az oldalt olyan ablakban nézed, amely szélesebb, mint a tartalom leghosszabb sora). A header már nem tölti ki az ablak teljes szélességét. Miért? A header elem alapértelmezett megjelenítési formája blokk (block level element). De amikor a display értékét table-re állítottad, megszűnt blokkszintű elemnek lenni. Aggodalomra semmi ok, csak adni kell neki egy szélességet: width: 100vw
+
+Szuper. Mehetünk tovább a .wrapper divre.
+
+Display-cell azt mondja a böngészőnek, hogy a táblázat egy cellájaként kezelje a .wrappert.
+
+Pozicionálásához a vertical-align tulajdonságra lesz szükséged:*/
+
+.wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 .625rem;
+}
+
+/* Nézd csak, na ezt nevezem fantasztikusan középre rendezett tartalomnak. A megoldás igazi szépsége, hogy teljesen reszponzív. Mindegy, éppen milyen méretű képernyőn jelenik meg, a böngésző szépen körbevágja a háttérképet, és középre rendezi a tartalmat. Már csak a tipográfiával van dolgunk, és készen is vagyunk. */
+
+/* CSS 2.
+Még egy kis tipográfia és egy kevés extra tartalom maradt hátra.
+
+Tipográfia
+Ezeket a stíluselemeket már nem részletezem. Ha eddig eljutottál az anyagban, már semmi meglepő nem lesz benne. :) Csak add hozzá a binedhez: */
+
+.byline h2 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  letter-spacing: .1rem;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+
+.byline h3 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.headline {
+  font-size: 3rem;
+  margin: 2rem 0;
+}
+
+@media screen and (min-width: 1224px) {
+
+  .headline {
+    font-size: 6rem;
+  }
+
+}
+
+.tagline {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+/* Végső simítások
+Hogy teljes körűen élvezhessük az egész ablakot beterítő headert, szükségünk lesz egy cikkre, és annak tartalmaként egy kevés térkitöltő szövegre. Létrehozok egy section-t pár bekezdésnyi szöveggel és egy címsorral, majd az egészet egy <article> tagbe csomagolom, hogy az oldal szemantikus struktúráját megőrizzem.
+
+Másold ezt a záró </header> tag alá a HTML-ben */
+
+/* Majd az egész tartalmat csomagold be egy article elembe. (A body elem közvetlen gyermeke lesz így ez az elem.)
+
+Remek, még egy kis formázásra lesz szükségünk az új tartalom miatt. Add ezt hozzá a jelenlegi CSS-szabályok után: */
+
+/* ==== ARTICLE STYLES ==== */
+
+section {
+  padding: 0 .625rem;
+}
+
+@media screen and (min-width: 1224px) {
+
+  section {
+    width: 50%;
+    max-width: 600px;
+    margin: 2rem auto;
+  }
+
+}
+
+section h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 2rem 0;
+}
+
+section p {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+}
+

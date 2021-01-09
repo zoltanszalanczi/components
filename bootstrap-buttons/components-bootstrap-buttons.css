@@ -1,0 +1,127 @@
+/* CSS reset belinkelve a html head elemébe */
+
+/* The base of every button 
+
+A display: inline-block az egyik legfontosabb. Az anchor elemek megjelenítése alapértelmezetten inline, ami azt jelenti, hogy nem szabályozhatod a box-modell tulajdonságaikat (mint egyes padding és margin értékek). Ez a szabály ezt a viselkedést változtatja meg, lehetővé téve, hogy az elemeket gombbá gyúrjuk.
+A következő öt szabály (text-decoration, font-family, text-align, font-size és line-height) tipográfiával kapcsolatos.
+A padding ad a szövegnek lélegzetvételnyi helyet, így nem tűnik majd a gomb zsúfoltnak.
+A margin-bottom-ra vonatkozó szabály a gomb alatt teremt egy kis teret. Kisebb képernyőkön, ha egymás fölé rendeződnének a gombok, így nem érnek majd össze.
+A border és a border-radius tulajdonságok hozzák létre az átlátszó, lekerekített bordert. Jelenleg ez nem látszik, mert transparent értéket adtunk meg neki, de amint adunk ezeknek színt a kontextuális classok segítségével, megjelennek.
+A white-space: nowrap tulajdonság megakadályozza, hogy a szöveg az elemen belül új sorokba törhessen (ez nagyon hosszú gombfeliratoknál lehetne probléma).
+És végül a vertical-align: middle rendezi a gombot annak a sornak a vertikális közepére, amelyben éppen van
+
+*/
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.42857143;
+  padding: 6px 12px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  white-space: nowrap;
+  vertical-align: middle;
+  color: #fff;
+}
+
+/* Additional styles for "Default" */
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn-default:hover {
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+/* Additional styles for the other buttons */
+
+.btn-primary {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+.btn-primary:hover {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.btn-success {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn-success:hover {
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btn-info {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+.btn-info:hover {
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+
+.btn-warning {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.btn-warning:hover {
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btn-danger:hover {
+  background-color: #c9302c;
+  border-color:  #ac2925;
+}
+
+section {
+  max-width: 470px;
+  padding: 10px;
+  margin: 20px auto;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+h3 {
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  margin-bottom: 10px;
+}
+
+/* ==== A FLAT BUTTON EXAMPLE ==== */
+
+.button-nav {
+  display: inline-block;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  color: #000;
+  padding: .8rem 1rem;
+  border: 1px solid #000;
+}
+
+.button-nav:hover {
+  color: #fff;
+  background-color: #000;
+  transition: background-color .15s ease-in-out;
+}

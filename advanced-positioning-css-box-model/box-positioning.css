@@ -1,0 +1,76 @@
+/* Ha border-box-ra állítjuk a box-sizing-ot, akkor a width és height tulajdonságok értéke magában foglalja a paddinget és a bordert.
+
+Most már biztos lehetsz abban, hogy ha két elemnek ugyanazt a width értéket adod meg, akkor azok valóban ugyanolyan szélesek lesznek, függetlenül a border vagy padding tulajdonságok értékétől.
+
+A fejlesztők egy része ezt általános szabályként deklarálni szokta a projektek elején: (Ahol a * karakter az univerzális szelektor (universal selector), amely valamennyi elemre érvényes.)  */
+
+* {
+  box-sizing: border-box;
+}
+
+#box-01 {
+  background-color: hsla(60, 100%, 60%, .85);
+  width: 50%;
+}
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+  width: 50%;
+}
+
+/* Két doboz van a képernyőn. Szeretnéd, ha ezek egymás mellett helyezkednének el, és mindkettő a rendelkezésre álló terület felét foglalná el.
+
+Alapértelmezetten ezek block elemként jelennek meg egymás tetején (hiszen div-ek). Az egyik megoldás, ha egyszerűen floatolod a div-eket. Viszont most már tudod, hogy ezzel a megoldással a layout el fog törni, ha paddinget vagy bordert adsz a dobozokhoz, hiszen akkor a számított szélességük meg fogja haladni az 50%-ot, és így nem férnek majd ki egy sorba.
+
+Ugyanakkor azt is tudod, hogy ezt könnyedén meg lehet javítani egy box-sizing deklarációval. (itt úgy vettem, mintha nem lenne univerzális border -box az elején)*/
+
+div {
+  float: left;
+  box-sizing: border-box;
+}
+
+/* Még egy dolog
+Van egy másik megoldás is arra, hogy a dobozok egymás mellé kerüljenek:
+
+<div id="box-01">#box-01</div>
+<div id="box-02">#box-02</div>
+
+#box-01 {
+  background-color: hsla(60, 100%, 60%, .85);
+  width: 50%;
+}
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+  width: 50%;
+}
+
+A korábbiakban láthattad, hogy mire képes a display: inline-block deklaráció. Elméletileg akár ezzel is egymás mellé rendezhetnéd a dobozaidat:
+
+div {
+  display: inline-block;
+}
+
+Vagy mégsem..?
+
+Próbáld meg csökkenteni a div-ek szélességét. Mondjuk 49%-ra.
+
+Hopp, a dobozok szépen egymás mellé ugrottak! Ennek a viselkedésnek nincs köze a box-sizing tulajdonsághoz, ez a furcsaság az inline-block értékre specifikus.
+
+Inline (vagy inline-block) megjelenés esetén a HTML-kódban lévő szóközök és sortörések (whitespace) számítanak a böngészőnek. Ha szépen indentált kódot írsz, mint például ez:
+
+<div id="box-01">#box-01</div>
+<div id="box-02">#box-02</div>
+HTML
+Akkor whitespace keletkezik a két div között. Ezt a böngésző megjeleníti, ezzel a teljes tartalom szélessége már meghaladja a 100%-ot, ezért a második doboz a következő sorba tolódik. Ha visszaállítod a szélességet 50%-ra, de kitörlöd a whitespace-t:
+
+<div id="box-01">#box-01</div><div id="box-02">#box-02</div>
+HTML
+Akkor a dobozok szépen egymás mellé kerülnek.
+
+Van egy technika, amely HTML-kommenteket használ arra, hogy a whitespace eltűnjön, de megmaradjon a kód olvasható formázása:
+
+<div id="box-01">#box-01</div><!--
+--><div id="box-02">#box-02</div>
+HTML
+A float és az inline-block között nincs fontossági sorrend, egyik technika sem jobb, mint a másik. Helyzettől és egyéni preferenciától függ, hogy ki melyiket használja, te is válassz nyugodtan. Csak légy tisztában a furcsaságaikkal. */

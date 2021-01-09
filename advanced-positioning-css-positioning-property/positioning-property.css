@@ -1,0 +1,63 @@
+.box {
+  width: 100px;
+  height: 100px;
+}
+
+#box-01 {
+  background-color: hsla(60, 100%, 60%, .85);
+}
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+}
+
+#box-03 {
+  background-color: hsla(332, 69%, 51%, .85);
+}
+
+#box-04 {
+  background-color: hsla(279, 60%, 44%, .85);
+}
+
+/* position: fixed: az elem mindig ugyanott marad, akkor is, ha elgörget a felhasználó;
+Position: relative az ablak széléhez képest tudom mozgatni utána az elemet. */
+
+.box {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+/* Bár az elemeket kiemeltük a normál rendből, a HTML-kódban elfoglalt helyük továbbra is számít. Mindig az az elem kerül legelőrébb (rétegenként egymás fölé, hátulról indulva), amely legutoljára következik a HTML-ben. */
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+  width: 200px;
+  height: 200px;
+}
+
+
+/* A nagyobb z-indexű elem mindig előrébb lesz, mint a kisebb z-indexű társa. Csak pozicionált elemeknek adhatsz z-index értéket. Ha nem adsz meg z-index értéket egy pozicionált elemnek, akkor automatikusan megörökli a szülőelem z-indexét.
+
+Egy gyakorlati példa a z-index-re, amikor szeretnél egy fix fejlécet (header) az oldaladra. Szeretnéd, ha mindig ez lenne elöl, de szeretnéd megtartani a HTML-ed tetején, mivel logikailag oda illik. Ha nem állítasz be ennek a fejlécnek egy magasabb z-index értéket, akkor minden pozicionált elem előtte fog megjelenni, kitakarva magát a fejlécet. */
+
+#box-01 {
+  background-color: hsla(60, 100%, 60%, .85);
+  z-index: 1;
+}
+
+#box-02 {
+  background-color: hsla(84, 84%, 56%, .85);
+  z-index: 2;
+}
+
+#box-03 {
+  background-color: hsla(332, 69%, 51%, .85);
+  z-index: 3;
+}
+
+#box-04 {
+  background-color: hsla(279, 60%, 44%, .85);
+  z-index: 4;
+} 

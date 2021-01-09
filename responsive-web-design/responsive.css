@@ -1,0 +1,310 @@
+/* Korábbról már ismerős lehet: minden weblapépítés első (biztonságos és okos) lépése, ha megkönnyíted a dolgod, és beállítod a border-box értéket a box-sizing tulajdonságra. */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Remek hely jó minőségű, szabadon felhasználható képek keresésére például az Unsplash. Ha innen származó képeket használsz, már csak arra kell ügyelned, hogy a szuper minőség miatt hatalmasak. Csökkentsd a méretüket, vagy az oldalad betöltési ideje jelentősen megnő. */
+
+/* ==== A SIMPLE CSS RESET FROM ERIC MEYER ==== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ==== HELPER COLORS FOR LAYOUT ==== 
+
+.main-header {
+    	background-color: rgba(243,134,33,.3);
+}
+
+.primary-content {
+	background-color: rgba(78,114,221,.3);
+}
+
+.post {
+	background-color: rgba(111,0,111,.3);
+} */
+
+/* Használj bizonyítottan jó betűpárosításokat. Egy gyors keresés ("font pairings" keresőkifejezésre) remek inspirációs forrás lehet. (Mi különösen kedveljük az alábbiakat: Font Pair, Digital Synopsis, Google Type Project by 25x52.) */
+
+/* ==== BASE STYLES ==== */
+
+body {
+  font-family: Merriweather, 'Times New Roman', serif;
+  font-size: /* 18px, magyarázat lent */ 1.125rem;
+  line-height: /* 32px */ 2rem;
+  color: #333;
+}
+
+h1, h2 {
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+h1 {
+  font-size: /* 28.8px */ 1.8rem;
+}
+
+h2 {
+  font-size: /* 25.6px */ 1.6rem;
+  color: #e5127d;
+}
+
+#main-title {
+  font-size: 1.125rem;
+  letter-spacing: /* 2px */ 0.125rem;
+  color: #8c8e9b;
+}
+
+a {
+	color: #e5127d;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #b60e63;
+}
+
+/* Relatív hosszméretek
+Em
+Az em érték a valós megjelenítési méretét a szülő eleméhez viszonyítva kapja: 1em egyenlő a szülő elemben beállított font-size méretével. Ha az oldalon belül semminek nem adtál meg betűméretet, akkor az 1em a böngésző alapbeállításának megfelelő méretet veszi alapul (ami leggyakrabban 16px).
+
+Rem
+A rem egységet pont azért vezették be a CSS-ben, hogy az em halmozódó hatásának problémájára jelentsen megoldást. A rem egység pontosan úgy működik, mint az em, egyetlen fontos különbséggel: a mérete alapja a "gyökér" elem (root element, a html elem) betűmérete, nem pedig a szülő elemé. Ez kiküszöböli az összeadódó hatás okozta fejtörést, de megmarad minden, ami az em egységben jó: relatív és skálázható.
+
+Tipográfia és a rem
+Ethan Marcotte alkotott egy formulát, amelynek segítségével minden ilyen átalakítás szuperkönnyű:
+
+target ÷ context = result
+
+Ahol:
+A "target" (cél) a kívánt célméret, pixelekben megadva. A "context" (kontextus) az a méret, pixelekben megadva, amely a relatív egység alapját fogja képezni. A "result" (eredmény) egy hányados, rem egységekben megadva.
+A body betűmérete 18px. Ez lesz a cél (target). A méret, amelyet szeretnénk végül rem egységekben megadni. Tudjuk, hogy a rem egységek a gyökér elem (html) betűméretét használják viszonyítási egységként. Azt is tudjuk, hogy a böngészőkben ez alapesetben 16px. Ez lesz a kontextus (context). Már csak el kell osztanunk a kettőt egymással, és megkapjuk az eredményt (result), rem egységekben megadva:
+
+target ÷ context = result
+18px ÷ 16px = 1.125rem
+
+*/
+
+/* A viewport szélessége és magassága
+Még két relatív hosszmértékegységet mutatok neked, a vw (viewport width – viewport szélessége) és a vh (viewport height – viewport magassága) egységeket. Ezek az egységek még egészen újak, a CSS3-ban mutatkoztak be először. 
+A vw - viewport szélessége - 1vw a viewport szélességének századrésze. Más szavakkal a viewport szélességének 1%-a.
+
+A vw egység hasonlít a százalékra, csak a böngészőablak méreteit és nem a konténer elem méreteit veszi alapul. Ez például remekül használható, ha az elrendezés főbb egységeit (header, navbar, aside...) szeretnéd méretezni.
+
+A vh - viewport magassága
+1vh a viewport magasságának századrésze, azaz 1%-a.
+
+Ez az egység a viewport magasságát veszi alapul, ezen kivételtől eltekintve tökéletesen azonos a működése a vw egység működésével.
+
+Pro tipp: Amikor a webfejlesztés során viszonylag új dolgokat használsz, érdemes ellenőrizni a támogatottságukat a caniuse.com segítségével. Ezen az oldalon megtalálod minden CSS-tulajdonság, -érték és -egység esetén azt, hogy az egyes böngészőkben használhatóak-e. Ha bármikor kétséged támad valamivel kapcsolatban, csak keress rá.
+
+main {
+	width: 50vw;
+}
+
+header {
+	height: 25vh;
+} */
+
+
+
+/* ==== LAYOUT STYLES ==== */
+
+.main-header {
+	text-align: center;
+	padding: 1.25rem;
+    color: #fff;
+    background-color: #42444e;
+}
+
+/* A fő tartalmi egységünk jelen pillanatban még faltól falig tart. Szeretnénk, ha lenne egy lélegzetvételnyi térköz körülötte. Javítsunk most ezen. 
+
+A .post classt mindegyik article elemhez hozzáadtuk. A szülő elemük a .primary-content konténer, amely a blokkszintű (block level) elem (alapból teljes szélességgel). Ha a gyermekeinek 95%-os szélességet állítunk be, és azokat középre rendezzük, mindkét oldalon lesz egy kis szabadon maradó rész. */
+
+/* Media query - tablet
+Azt szeretnénk, ha a header a bal oldalon jelenne meg, és a képernyő harmadát foglalná el. Ezen kívül szeretnénk, ha egy helyben maradna akkor is, amikor a felhasználó az oldalon lejjebb görget. Itt a kód, amely ezt mind megoldja:
+(Megjegyzés: A 768px furcsa számnak tűnik. A leggyakrabban használt törési pontok (min-width: 320px, 480px, 768px, 992px és 1200px) azok, amelyek a Bootstrap nevű keretrendszerben használatosak. De ezeket mindig igazítsd a saját tartalmadhoz.)
+*/
+
+@media (min-width: 768px) {
+  .main-header {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 33.3%;
+		}
+}
+
+/* Media query - desktop
+A desktop méret
+Ha mostani állapotában megnyitod az oldaladat, láthatod, hogy a táblagépekre szabott megjelenítés a szélesebb, asztali gép méretű képernyőkön már nem mutat igazán jól. A header túl keskeny, és mivel a tartalmat jobbra floatoltuk, a két blokk között hatalmas rés tátong.
+
+Vezessünk be pár új media queryt az asztali gép méretre. Módosítsuk ezzel a header méretét, szűnjön meg a felesleges üres tér a két blokk között. Menj vissza a "Main Header Styles" részhez, és az alján nyiss egy új media queryt: */
+
+@media (min-width: 1025px) {
+	.main-header {
+		width: 20.625%;
+	}
+}
+
+
+
+/* Primary Content Wrapper Styles */
+
+
+/* A felső és alsó margó vertikálisan választja egy kicsit szét a bejegyzéseket.*/
+
+.post {
+	width: 95%;
+	margin: 1.25rem auto;
+	padding: 0.3125rem;
+}
+
+/*  A képek méretének beállítása a koténerhez (szülő elem) */
+
+.picture {
+	width: 100%;
+}
+
+/*  A mobilnézetünk még mindig egy kicsit zsúfolt. Nincs elég hely vertikálisan az elemek között, más szavakkal az oldalunk vertikális ritmusa még nem elég szemet gyönyörködtető. Most kipróbálunk egy dolgot, ami elsőre túl technikainak hangozhat, de egyszerű megérteni. Az angol neve single-direction margin declaration, azaz egyirányú margómegadás. Add hozzá a következő szabályt a CSS-hez, közvetlenül a "Layout Styles" címsor alá: */
+
+h1,h2,h3,h4,h5,h6,hgroup,
+ul,ol,dd,
+p,figure,
+pre,table,fieldset,hr,
+img,
+.main-header, .primary-content {
+    margin-bottom: 1rem;
+}
+
+/* Már majdnem teljesen jó. Csak a .post-ra vonatkozó margin értékét kell módosítanunk, hogy ne írja felül a korábban megadott 1rem értéket: */
+
+.post {
+	width: 95%;
+	margin: 0 auto 1rem;
+	padding: 0.3125rem;
+}
+
+/* Megjegyzés: Ha három értéket adsz meg a margónak (margin: 0 auto 1rem;), azok a következő sorrendben szabályozzák az egyes oldali margókat: top, right (and left) és bottom. */
+
+
+/* Media query - tablet
+A problémát jelenleg az okozza, hogy a header-t fix helyzetbe hoztuk (position: fixed), és a fő tartalmi egységünk most mögötte helyezkedik el. Megoldás, ha ezt az egységet jobbra float-oljuk ugyanannál a törési pontnál (breakpoint).
+
+Nyisd meg a bint, és adj hozzá a CSS-hez egy új címsort "Primary Content Wrapper Styles" (az elsődleges tartalmat csomagoló egységre vonatkozó stílusok) névvel a "Main Header" és az "Article" stílusok közé. Azt szeretnénk, ha ez a blokk az aside rész mellé kerülne, és a viewport maradék részét töltené ki: */
+
+@media (min-width: 768px) {
+
+	.primary-content {
+		float: right;
+		width: 66.6%;
+		max-width: 812px;
+	}
+}
+
+/* Media query - desktop
+Ez a kódblokk egy új törési pontot definiál (ez most az 1025 pixeles és afölötti méreteket célozza), és felülírja a header szélességét. Ezen kívül arra van még szükségünk, hogy a tartalmat balra toljuk. Nyiss egy másik új media queryt a "Primary Content Wrapper" részben*/
+
+@media (min-width: 1025px) {
+
+	.primary-content {
+		float: none;
+		position: absolute;
+        left: 20.625%;
+	}
+}
+
+
+/* A Komponensek hozzáadása
+A drótváz (wireframe) és a specifikáció alapján a heading részen gombokra, az oldal alján pedig egy "Load more stories..." linkre lesz szükségünk. Mivel ez nem kifejezetten reszponzív web territórium, ezért kész kódrészleteket adunk a kezedbe. Ha érdekel, hogy ezek az oldalkomponensek hogyan készülnek, nézz körül a többi CodeBerry projektben.
+
+Első lépésként adj .button classt a header rész mindkét linkjének, illetve egy .load classt az oldal alján található linknek. */
+
+/* ==== COMPONENT STYLES ==== */
+
+.button {
+	display: inline-block;
+	border: 1px solid #8c8e9b;
+	color: #8c8e9b;
+	border-radius: 10px;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin: 5px;
+	width: 100px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.button:hover {
+	border: 1px solid #b60e63;
+}
+
+.load {
+	display: block;
+	text-align: center;
+	padding: 0.625rem;
+	font-size: 1.25rem;
+	color: #8c8e9b;
+}
+
+/* Pár tipográfiai módosítás
+Változtasd meg a fő címsor színét és a header háttérszínét. Navigálj a "Main Header Styles" (Fő fejléc stílusai) részhez, és módosítsd a következők szerint:
+
+.main-header {
+	text-align: center;
+	padding: 1.25rem;
+	color: #fff;
+	background-color: #42444e;
+}
+CSS
+A linkek alá vannak húzva, nem változnak meg, ha rájuk mutatsz az egérrel, és néhol még az eredeti színük látszik. Javítsunk ezeken a hiányosságokon az alábbi szabályok hozzáadásával a "Base Styles" (alapstílusok) végéhez:
+
+a {
+	color: #e5127d;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #b60e63;
+} */
+

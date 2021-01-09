@@ -1,0 +1,20 @@
+/* CSS reset belinkelve a html head elemébe */
+
+/* A calc() megoldás
+A B megoldási lehetőség a calc() függvény. Ez a módszer a következőkön alapul:
+
+a footer kivételével minden tartalmat csomagolj be egy konténerbe,
+a footernek adj egy fix magasságot, és
+számítsd ki a tartalom konténerének magasságát úgy, hogy a viewport teljes magasságából levonod a footer magasságát. */
+
+.content {
+  min-height: calc(100vh - 50px);
+}
+
+.footer {
+  height: 50px;
+}
+
+/* A calc() függvény ennek a módszernek a sarokköve. Használatával dinamikusan tudod számítani a .content magasságát úgy, hogy kivonod a footer magasságát a teljes viewport magasságából. Így a .content mindig le fogja tolni a footert a viewport legaljára.
+
+Ennek a módszernek ugyanaz a korlátja, mint az előzőnek: csak akkor működik, ha a footer magassága fix. Szintén nem kell emiatt aggódnod, csak tudj róla. */

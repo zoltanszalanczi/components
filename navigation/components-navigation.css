@@ -1,0 +1,100 @@
+/* CSS reset belinkelve a html head elemébe */
+
+/* Az első lépés (természetesen) a HTML-váz. A navigációs elemeknek saját szemantikus tagje van a HTML5-ben, a <nav> elem. Amikor navbart építesz, kezdd ezzel:
+
+<nav>
+<!-- Here comes the navigation. -->
+</nav>
+HTML
+Szuper, most már hozzáadhatod a navigációs linkeket is. Kétféleképpen teheted ezt meg, és mindkettőt megmutatom.
+
+A opció: egy rendezetlen lista (ul) listaelemeiként (li) sorolod fel az a tageket (mivel technikailag ez navigációs elemek listája):
+
+<nav>
+  <ul>
+    <li><a href="#">Link 1</a></li>
+    <li><a href="#">Link 2</a></li>
+    <li><a href="#">Link 3</a></li>
+    <li><a href="#">Link 4</a></li>
+  </ul>
+</nav>
+HTML
+Megjegyzés: Ebben az esetben figyelned kell arra, hogy a listát megfoszd az alapértelmezett formázásától (a lista pontjainak eltávolítása, egy sorban való megjelenítés...)
+
+B opció: dönthetsz úgy is, hogy nem szeretnél a listákkal pluszban foglalkozni, az anchor elemek pont elegendőek lesznek:
+
+<nav>
+  <a href="#">Link 1</a>
+  <a href="#">Link 2</a>
+  <a href="#">Link 3</a>
+  <a href="#">Link 4</a>
+</nav>
+HTML
+Nincs jó vagy rossz választás, mind a két módszer teljesen elfogadható. A listás változat egy picit népszerűbb, mert egyes képernyőolvasók elvileg jobban kezelik. Az erre vonatkozó bizonyíték azonban nem valami erős, úgyhogy végeredményben nem sokat számít melyik változatot használod. Mind a kétféleképpen megépítjük a komponenseket, hogy lásd a különbséget, aztán kiválaszthatod, melyik tetszik inkább. Vagy melyik passzol jobban éppen az aktuális projektedhez */
+
+/* ==== GENERAL STYLES ==== */
+
+* {
+  box-sizing: border-box;
+}
+
+/* ==== A SIMPLE TOP NAVIGATION ==== */
+
+nav ul {
+  background-color: #eee;
+  text-align: center;
+}
+
+nav li {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  line-height: 3rem;
+  height: 3rem;
+  border-bottom: 1px solid #ccc;
+}
+
+nav a {
+  text-decoration: none;
+  color: #C74F78;
+  display: block;
+}
+
+/* A text-decoration: none; megfosztja a linkeket a kék, aláhúzott megjelenésüktől. Így tudunk új színt adni ezeknek a következő sorban. A legfontosabb szabály a display: block;. Ennek köszönhetően az anchor elemek kitöltik az li tageket. Ez megnöveli a kattintható terület méretét a teljes szélességre és magasságra, így könnyebb ráklikkelni a navigációs linkekre.
+
+Ezzel be is fejeztük az alapstílusokat, jöhetnek a speciális állapotok.: */
+
+nav a:hover {
+  background-color: #fff;
+  transition: background-color .3s ease-in-out;
+}
+
+/* Bevett gyakorlat a több oldalból álló weblapokon, hogy az éppen aktív navigációs linket (amelyik oldalt éppen nézed) megkülönböztetik. Ha mondjuk most éppen a főoldalt ("Home") építenénk, ennek kellene aktívnak lennie. Adj egy .active classt a megfelelő anchor elemnek a HTML-ben. Aztán egészítsd ki a CSS-t: */
+
+nav a.active {
+  background-color: #c74f78;
+  color: #eee;
+}
+
+/* Az asztali gépre szánt stílusok
+A navbar mobilváltozata gyakorlatilag kész, viszont a vertikálisan egymásra halmozott, roppant széles gombok igencsak furcsán mutatnak a mobilnál nagyobb nézetben. Szerencsére már tudod, hogyan működnek a media queryk. Most ezek segítségével alakítjuk át a navot horizontálissá.
+
+Először adjuk meg a media queryt a törési ponttal, Aztán célozzuk meg a listaelemeket, és állítsuk a display tulajdonságot inline-block-ra, Nos, egy lépéssel közelebb jutottunk, de a dolgok elég zsúfoltnak tűnnek, és az elemeknek van egy fölösleges alsó bordere. Javítsunk ezeken: */
+
+@media (min-width: 600px) {
+
+  nav li {
+    display: inline-block;
+    border-bottom: none;
+    width: 7.5rem;
+  }
+
+}
+
+/* Majdnem tökéletes, már csak a kis térközöktől kellene megszabadulnunk a nav linkjei között, amelyek az inline-block megjelenítés miatt kerülnek oda. A legegyszerűbb megoldás, ha a teljes nav betűméretét 0 pixelre állítjuk, így a köztes szóközök nem foglalnak helyet. Add hozzá ezt a kódblokkot a CSS-hez: */
+
+nav {
+  font-size: 0;
+}
+
+
+
